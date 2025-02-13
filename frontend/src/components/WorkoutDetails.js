@@ -29,7 +29,7 @@ const WorkoutDetails = ({workout}) => {
     }
  
     const handleUpdate = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         const updatedWorkout = {
             title: updatedTitle,
             load: updatedLoad,
@@ -40,6 +40,7 @@ const WorkoutDetails = ({workout}) => {
             method: 'PATCH', // Ensure your backend supports PUT
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             },
             body: JSON.stringify(updatedWorkout),
         });
@@ -72,7 +73,8 @@ const WorkoutDetails = ({workout}) => {
                         value={updatedReps}
                         onChange={(e) => setUpdatedReps(e.target.value)}
                     />
-                    <button type="submit" onClick={(console.log("Edit Saved"))} >Save</button>
+                    {/* <button type="submit" onClick={(console.log("Edit Saved"))} >Save</button> */}
+                    <button type="submit">Save</button> 
                     <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
                 </form>
             ) : (
